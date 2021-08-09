@@ -26,14 +26,14 @@ public class JarDropHandler extends TransferHandler {
     if (!info.isDrop())
       return false;
     Transferable t = info.getTransferable();
-    List<File> data = null;
+    List<File> data;
     try {
       data = (List<File>) t.getTransferData(DataFlavor.javaFileListFlavor);
     } catch (Exception e) {
       return false;
     }
     for (File jar : data) {
-      if (jar.getName().toLowerCase().matches(".*(\\.jar|\\.class)")) {
+      if (jar.getName().toLowerCase().matches(".*(\\.jar|\\.class|\\.zip)")) {
         loader.onFileDrop(jar);
         return true;
       }

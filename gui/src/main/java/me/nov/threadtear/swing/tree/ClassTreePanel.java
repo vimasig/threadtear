@@ -209,6 +209,7 @@ public class ClassTreePanel extends JPanel implements ILoader {
   private void loadFile(String type) {
     try {
       switch (type) {
+        case "zip":
         case "jar":
           this.classes = JarIO.loadClasses(inputFile);
           if (classes.stream().anyMatch(c -> c.oldEntry.getCertificates() != null)) {
