@@ -69,7 +69,7 @@ public class Threadtear extends JFrame {
           JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
         this.dispose();
         System.gc();
-        new Threadtear().setVisible(true);
+        (instance = new Threadtear()).setVisible(true);
       }
     });
     file.add(ws);
