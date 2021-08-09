@@ -20,12 +20,13 @@ public final class JarIO {
     ArrayList<Clazz> classes = new ArrayList<>();
     JarFile jar = new JarFile(jarFile);
     Stream<JarEntry> str = jar.stream();
-    str.forEach(z -> readEntry(jar, z, classes));
+    str.forEach(z -> classes.addAll(readEntry(jar, z)));
     jar.close();
     return classes;
   }
 
-  private static ArrayList<Clazz> readEntry(JarFile jar, JarEntry en, ArrayList<Clazz> classes) {
+  private static List<Clazz> readEntry(JarFile jar, JarEntry en) {
+    final List<Clazz> classes = new ArrayList<>();
     String name = en.getName();
     try (InputStream jis = jar.getInputStream(en)) {
       byte[] bytes = IOUtils.toByteArray(jis);
